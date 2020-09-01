@@ -30,16 +30,16 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: code-coverage
-          path: coverage 
+          path: coverage
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
       - name: Upload Build Folder
+        if: github.event_name == 'push'
         uses: actions/upload-artifact@v1
         with:
           name: build
-          path: build 
-      - uses: actions/download-artifact
+          path: build
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain tricky-engine.surge.sh

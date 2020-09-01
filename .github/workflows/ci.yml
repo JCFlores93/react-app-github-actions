@@ -61,3 +61,7 @@ jobs:
       - name: Deploy to production
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx surge --project ./build --domain motionless-rice.surge.sh
+      - name: Open Issue
+        if: failure() && github.event_name == 'push'
+        run: |
+          echo 'issue'
